@@ -37,13 +37,11 @@ class ViewController: UIViewController {
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        // A Boolean value that determines whether touches are delivered to a view when a gesture is recognized.
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     
     @objc func dismissKeyboard() {
-        // Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
 }
