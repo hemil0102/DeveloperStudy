@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C74311592C2A6F0000F28FA1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74311582C2A6F0000F28FA1 /* main.swift */; };
+		C74311602C2A711900F28FA1 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C743115F2C2A711900F28FA1 /* Queue.swift */; };
+		C74311622C2A712500F28FA1 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74311612C2A712500F28FA1 /* Customer.swift */; };
+		C74A00EA2C2A728A0046A0EB /* BankEmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74A00E92C2A728A0046A0EB /* BankEmployee.swift */; };
+		C74A00ED2C2A73320046A0EB /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74A00EC2C2A73320046A0EB /* LinkedList.swift */; };
+		C7B5145A2C302ECA005C19DF /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B514592C302ECA005C19DF /* Node.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +30,11 @@
 /* Begin PBXFileReference section */
 		C74311552C2A6F0000F28FA1 /* ios-bank-second-console */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ios-bank-second-console"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74311582C2A6F0000F28FA1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C743115F2C2A711900F28FA1 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		C74311612C2A712500F28FA1 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		C74A00E92C2A728A0046A0EB /* BankEmployee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankEmployee.swift; sourceTree = "<group>"; };
+		C74A00EC2C2A73320046A0EB /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		C7B514592C302ECA005C19DF /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +68,29 @@
 			isa = PBXGroup;
 			children = (
 				C74311582C2A6F0000F28FA1 /* main.swift */,
+				C74A00EB2C2A73120046A0EB /* Queue */,
+				C74311632C2A714100F28FA1 /* Model */,
 			);
 			path = "ios-bank-second-console";
+			sourceTree = "<group>";
+		};
+		C74311632C2A714100F28FA1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C74311612C2A712500F28FA1 /* Customer.swift */,
+				C74A00E92C2A728A0046A0EB /* BankEmployee.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C74A00EB2C2A73120046A0EB /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				C743115F2C2A711900F28FA1 /* Queue.swift */,
+				C74A00EC2C2A73320046A0EB /* LinkedList.swift */,
+				C7B514592C302ECA005C19DF /* Node.swift */,
+			);
+			path = Queue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,7 +151,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C74311622C2A712500F28FA1 /* Customer.swift in Sources */,
+				C74A00EA2C2A728A0046A0EB /* BankEmployee.swift in Sources */,
+				C74A00ED2C2A73320046A0EB /* LinkedList.swift in Sources */,
+				C7B5145A2C302ECA005C19DF /* Node.swift in Sources */,
 				C74311592C2A6F0000F28FA1 /* main.swift in Sources */,
+				C74311602C2A711900F28FA1 /* Queue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
