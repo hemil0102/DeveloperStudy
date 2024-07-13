@@ -1,9 +1,13 @@
 import Foundation
 
-struct Customer {
-    private var isTaskDone = false
+struct Customer: Equatable {
+    private var ticketNumber = 0
     
-    func joinQueue() {
-        print("손님이 대기열에 들어섭니다.")
+    init(ticketNumber: Int = 0) {
+        self.ticketNumber = ticketNumber
+    }
+    
+    func readTicketNumber() -> Int {
+        return ticketNumber
     }
 }

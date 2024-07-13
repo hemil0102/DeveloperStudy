@@ -5,8 +5,7 @@ final class Queue<T: Equatable> {
     func enqueue(with item: T) {
         linkedList.addNodeAtRear(with: item)
     }
-    
-    @discardableResult
+
     func dequeue() -> T? {
         return linkedList.deleteNodeFromFront()
     }
@@ -14,13 +13,11 @@ final class Queue<T: Equatable> {
     func clean() {
         linkedList.clean()
     }
-    
-    @discardableResult
+
     func peek() -> T? {
         return linkedList.readFirstNodeData()
     }
     
-    @discardableResult
     func totalLength() -> Int {
         return linkedList.count
     }

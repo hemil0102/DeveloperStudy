@@ -1,13 +1,18 @@
 import Foundation
 
 struct BankEmployee {
-    private var isTaskDone = false
+    private var jobPositon = "deposit"
+    private let taskDuration = 70
     
-    func callCustomer() {
-        print("손님을 대기열에서 불러옵니다.")
+    func callCustomer(with customer: Customer) {
+         print("\(customer.readTicketNumber())번 고객 업무 시작")
     }
     
-    func handleTask() {
-        print("고객의 업무를 처리합니다.")
+    func handleCustomerTask(with customer: Customer) {
+        print("\(customer.readTicketNumber())번 고객 업무 종료")
+    }
+    
+    func reportHandleTime() -> Int {
+        return taskDuration
     }
 }

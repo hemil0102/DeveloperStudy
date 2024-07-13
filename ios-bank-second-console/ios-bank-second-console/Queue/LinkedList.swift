@@ -1,4 +1,4 @@
-class LinkedList<T: Equatable> {
+final class LinkedList<T: Equatable> {
     private(set) var head: Node<T>?
     private(set) var tail: Node<T>?
     private(set) var count: Int = 0
@@ -9,21 +9,20 @@ class LinkedList<T: Equatable> {
         let newNode = Node(data: data)
         
         if isEmpty {
-            self.head = newNode
-            self.tail = newNode
+            head = newNode
+            tail = newNode
         } else {
-            self.tail?.next(with: newNode)
-            self.tail = newNode
+            tail?.next(with: newNode)
+            tail = newNode
         }
         count += 1
     }
     
     // 노드를 앞에서부터 삭제하기
-    @discardableResult
     func deleteNodeFromFront() -> T? {
         guard let currentHead = head else { return nil }
 
-        head = currentHead
+        head = currentHead.next
         if head == nil { tail = nil }
         count -= 1
         
@@ -43,7 +42,7 @@ class LinkedList<T: Equatable> {
     }
 
     // 데이터가 같은 노드의 위치(순번) 찾기
-    func searchNodeLocation(with data: T?) -> Int? {
+    func searchNodeLocation(with data: T) -> Int? { // T?
         var current = head
         var locationIndex = 0
         
