@@ -49,6 +49,7 @@ struct BankMananger {
         bankEmployeeManager.resetHistory()
     }
     
+    // 은행 서비스 시작, 종료를 관리
     mutating func operateBankService() {
         if isOpen {
             startService()
