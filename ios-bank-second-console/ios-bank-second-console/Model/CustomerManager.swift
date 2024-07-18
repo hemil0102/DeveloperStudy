@@ -11,15 +11,21 @@ final class CustomerManager {
     
     func enQueueCustomers() {
         for ticketNumber in 1...customerCount {
-            custumerQueue.enqueue(with: Customer(ticketNumber: ticketNumber))
+            let generatedTask = generateCustomerTask()
+            custumerQueue.enqueue(with: Customer(ticketNumber: ticketNumber, customerTask: generatedTask))
         }
+    }
+    
+    func generateCustomerTask() -> CustomerTask {
+        let randomValue = arc4random_uniform(2)
+        return randomValue == 0 ? .deposit : .loan
     }
 
     func queue() -> Queue<Customer> {
         return custumerQueue
     }
     
-    func checkCustomers() {
+    func checkCustomerCount() {
         print("고객 대기수는:" + "\(custumerQueue.totalLength())")
     }
 }

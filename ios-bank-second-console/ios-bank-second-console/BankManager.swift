@@ -1,18 +1,19 @@
 import Foundation
 
-struct BankMananger {
+class BankMananger {
     private var isOpen: Bool = false
     private var customerManager = CustomerManager()
     private var bankEmployeeManager = BankEmployeeManager()
+    let bankDispatchGroup = DispatchGroup()
     
     // 서비스를 시작하는 부분
-    mutating func startService() {
+    func startService() {
         printBankMenu()
         handleUserSelection()
     }
     
     // 손님 입력에 따라서 업무를 처리
-    mutating func handleUserSelection() {
+    func handleUserSelection() {
         repeat {
             let userInputResult = getUserInput()
             
@@ -20,25 +21,26 @@ struct BankMananger {
             case .success(let avalilableInput):
                 isOpen = (avalilableInput == .open)
                 if isOpen {
-                    handleCustomerTask()
-                    reportBankingServiceHistory()
+                    handleCustomerTask(with: bankDispatchGroup)
+                    bankDispatchGroup.notify(queue: .global()) { // ❓ 여기 .main 왜 안되지 다시 찾아볼 것!
+                        self.reportBankingServiceHistory()
+                        self.operateBankService()
+                    }
                 }
             case .failure(let error):
                 print(error.localizedDescription)
                 isOpen = true
+                self.operateBankService()
             }
-            
-            operateBankService()
-            
         } while isOpen
     }
     
     // 손님의 업무를 처리
-    func handleCustomerTask() {
+    func handleCustomerTask(with bankDispatchGroup: DispatchGroup) {
         customerManager.generateCustomers()
         customerManager.enQueueCustomers()
-        customerManager.checkCustomers()
-        bankEmployeeManager.handleCustomersTask(with: customerManager.queue())
+        customerManager.checkCustomerCount()
+        bankEmployeeManager.handleCustomersTask(with: customerManager.queue(), by: bankDispatchGroup)
     }
     
     // 마감 보고
@@ -50,7 +52,7 @@ struct BankMananger {
     }
     
     // 은행 서비스 시작, 종료를 관리
-    mutating func operateBankService() {
+    func operateBankService() {
         if isOpen {
             startService()
         } else {
@@ -70,7 +72,7 @@ struct BankMananger {
         print("입력 : ", terminator: "")
     }
      
-    // 유지 입력
+    // 유저 입력
     func getUserInput() -> Result<BankMenu, InputError> {
         guard let userConsoleInput = readLine(), let avalilableInput = BankMenu(rawValue: userConsoleInput) else {
             return .failure(.wrongInput)
