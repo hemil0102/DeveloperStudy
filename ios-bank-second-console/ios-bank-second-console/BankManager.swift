@@ -9,30 +9,7 @@ class BankMananger {
     // 서비스를 시작하는 부분
     func startService() {
         printBankMenu()
-        handleUserSelection()
-    }
-    
-    // 손님 입력에 따라서 업무를 처리
-    func handleUserSelection() {
-        repeat {
-            let userInputResult = getUserInput()
-            
-            switch userInputResult {
-            case .success(let avalilableInput):
-                isOpen = (avalilableInput == .open)
-                if isOpen {
-                    handleCustomerTask(with: bankDispatchGroup)
-                    bankDispatchGroup.notify(queue: .global()) { // ❓ 여기 .main 왜 안되지 다시 찾아볼 것!
-                        self.reportBankingServiceHistory()
-                        self.operateBankService()
-                    }
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-                isOpen = true
-                self.operateBankService()
-            }
-        } while isOpen
+        isInputAvailable()
     }
     
     // 손님의 업무를 처리
@@ -79,5 +56,28 @@ class BankMananger {
         }
         
         return .success(avalilableInput)
+    }
+    
+    func isInputAvailable() {
+        let userInputResult = getUserInput()
+        
+        switch userInputResult {
+        case .success(let avalilableInput):
+            isOpen = (avalilableInput == .open)
+            if isOpen {
+                handleCustomerTask(with: bankDispatchGroup)
+                bankDispatchGroup.wait()
+                reportBankingServiceHistory()
+                startService()
+                    
+            } else {
+                closeService()
+                return
+            }
+        case .failure(let error):
+            print(error.localizedDescription)
+            isOpen = true
+            self.operateBankService()
+        }
     }
 }

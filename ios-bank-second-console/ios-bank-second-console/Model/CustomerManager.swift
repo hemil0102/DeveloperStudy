@@ -5,7 +5,7 @@ final class CustomerManager {
     private let custumerQueue = Queue<Customer>()
     
     func generateCustomers() {
-        self.customerCount = Int.random(in: 15...30)
+        self.customerCount = Int.random(in: 5...10)
         print("고객이 \(self.customerCount)명 생성되었어요.")
     }
     
